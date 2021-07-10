@@ -14,10 +14,6 @@ PASSWORD = environ['PASSWORD']
 IMAGE = "image.png"
 POSTED = False
 
-bot = Bot()
-bot.login(username=USERNAME, password=PASSWORD)
-
-
 def data_collection():
     data_response = requests.get(NASA_URL + NASA_API)
     data = data_response.json()
@@ -64,14 +60,18 @@ def main():
         hour = now.hour
         minute = now.minute
 
-        if hour == 21 and minute == 13 and POSTED == False:
+        if hour == 22 and minute == 20 and POSTED == False:
+            
+            bot = Bot()
+            bot.login(username=USERNAME, password=PASSWORD)
+
             title = data_collection()
             upload_post(IMAGE, title)
             clean_up(IMAGE)
             POSTED = True
 
 
-        if hour == 20 and minute == 45:
+        if hour == 22 and minute == 21:
             POSTED = False
 
 
