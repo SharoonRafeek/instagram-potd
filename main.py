@@ -16,7 +16,7 @@ IMAGE = "image.png"
 POSTED = False
 
 bot = Bot()
-time.sleep(10)
+time.sleep(30)
 bot.login(username=USERNAME, password=PASSWORD)
             
 
@@ -66,7 +66,7 @@ def main():
         hour = now.hour
         minute = now.minute
 
-        if hour == 22 and minute == 35 and POSTED == False:
+        if hour == 22 and minute == 40 and POSTED == False:
             
         
             title = data_collection()
@@ -75,7 +75,7 @@ def main():
             POSTED = True
 
 
-        if hour == 22 and minute == 40:
+        if hour == 22 and minute == 41:
             POSTED = False
 
 
