@@ -6,12 +6,16 @@ import requests
 import datetime
 
 
-NASA_API = "k8fzYgYip4fLYqmVn5IsHzP99afQeyX4ADGrpFze"
-NASA_URL = "https://api.nasa.gov/planetary/apod?api_key="
-USERNAME = "nasa.potd"
-PASSWORD = "Catalystno.8181"
+NASA_API = environ['NASA_API']
+NASA_URL = environ['NASA_URL']
+USERNAME = environ['USERNAME']
+PASSWORD = environ['PASSWORD']
+
 IMAGE = "image.png"
 POSTED = False
+
+bot = Bot()
+bot.login(username=USERNAME, password=PASSWORD)
 
 
 def data_collection():
@@ -35,10 +39,9 @@ def data_collection():
 def clean_up(i):
     dir = "config"
     remove_me = "imgs\{}.REMOVE_ME".format(i)
-    # checking whether config folder exists or not
+    
     if os.path.exists(dir):
         try:
-            # removing it so we can upload new image
             shutil.rmtree(dir)
         except OSError as e:
             print("Error: %s - %s." % (e.filename, e.strerror))
@@ -62,14 +65,11 @@ def main():
         minute = now.minute
 
         if hour == 21 and minute == 13 and POSTED == False:
-            clean_up(IMAGE)
-
-            bot = Bot()
-            bot.login(username=USERNAME, password=PASSWORD)
-
             title = data_collection()
             upload_post(IMAGE, title)
+            clean_up(IMAGE)
             POSTED = True
+
 
         if hour == 20 and minute == 45:
             POSTED = False
