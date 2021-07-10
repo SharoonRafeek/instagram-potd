@@ -4,6 +4,7 @@ import os
 import shutil
 import requests
 import datetime
+import time
 
 
 NASA_API = environ['NASA_API']
@@ -13,6 +14,11 @@ PASSWORD = environ['PASSWORD']
 
 IMAGE = "image.png"
 POSTED = False
+
+bot = Bot()
+time.sleep(10)
+bot.login(username=USERNAME, password=PASSWORD)
+            
 
 def data_collection():
     data_response = requests.get(NASA_URL + NASA_API)
@@ -60,18 +66,16 @@ def main():
         hour = now.hour
         minute = now.minute
 
-        if hour == 22 and minute == 20 and POSTED == False:
+        if hour == 22 and minute == 32 and POSTED == False:
             
-            bot = Bot()
-            bot.login(username=USERNAME, password=PASSWORD)
-
+        
             title = data_collection()
             upload_post(IMAGE, title)
             clean_up(IMAGE)
             POSTED = True
 
 
-        if hour == 22 and minute == 21:
+        if hour == 22 and minute == 38:
             POSTED = False
 
 
