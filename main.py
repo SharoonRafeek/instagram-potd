@@ -15,6 +15,7 @@ PASSWORD = environ['PASSWORD']
 IMAGE = "image.png"
 POSTED = False
 
+tim.sleep(10)
 bot = Bot()
 time.sleep(30)
 bot.login(username=USERNAME, password=PASSWORD)
@@ -66,7 +67,7 @@ def main():
         hour = now.hour
         minute = now.minute
 
-        if hour == 22 and minute == 40 and POSTED == False:
+        if hour == 22 and minute == 41 and POSTED == False:
             
         
             title = data_collection()
@@ -75,7 +76,7 @@ def main():
             POSTED = True
 
 
-        if hour == 22 and minute == 41:
+        if hour == 22 and minute == 45:
             POSTED = False
 
 
