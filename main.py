@@ -67,7 +67,7 @@ def main():
         hour = now.hour
         minute = now.minute
 
-        if hour == 5 and minute == 0 and POSTED == False:
+        if hour == 22 and minute == 0 and POSTED == False:
             
         
             title = data_collection()
@@ -76,7 +76,7 @@ def main():
             POSTED = True
 
 
-        if hour == 5 and minute == 5:
+        if hour == 22 and minute == 5:
             POSTED = False
 
 
